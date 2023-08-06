@@ -2,23 +2,43 @@
 #include <stdio.h>
 int main()
 {
-    int a[3][3], b[3][4], i, j, k, l;
-    printf("enter the elements in 1st matrix: ");
-    for (i = 0; i < 3; i++)
+    int a[10][10], b[10][10], c[10][10], i, j, k, m, n, p, q, sum = 0;
+    printf("Enter the order of the first matrix: ");
+    scanf("%d %d", &m, &n);
+    printf("Enter the order of the second matrix: ");
+    scanf("%d %d", &p, &q);
+    if (n == p)
     {
-        for (j = 0; j < 3; j++)
+        printf("Enter the elements of the first matrix: ");
+        for (i = 0; i < m; i++)
+            for (j = 0; j < n; j++)
+                scanf("%d", &a[i][j]);
+        printf("Enter the elements of the second matrix: ");
+        for (i = 0; i < p; i++)
+            for (j = 0; j < q; j++)
+                scanf("%d", &b[i][j]);
+                //mul
+        for (i = 0; i < m; i++)
         {
-            scanf("%d", a[i][j]);
+            for (j = 0; j < q; j++)
+            {
+                for (k = 0; k < p; k++)
+                {
+                    sum += a[i][k] * b[k][j];
+                }
+                c[i][j] = sum;
+                sum = 0;
+            }
         }
-        printf("\n");
-    }
-    printf("enter the elements in 2nd matrix");
-    for (k = 0; k < 3; k++)
-    {
-        for (l = 0; l < 4; l++)
+        printf("The resultant matrix is: \n");
+        for (i = 0; i < m; i++)
         {
-            scanf("%d", b[k][l]);
+            for (j = 0; j < q; j++)
+                printf("%d ", c[i][j]);
+            printf("\n");
         }
-        printf("\n");
     }
+    else
+        printf("Multiplication not possible.");
+    return 0;
 }
